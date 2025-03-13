@@ -1,13 +1,11 @@
 package com.ecommerce.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -20,23 +18,27 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public class Category {
+public class OrderItem {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private Long id;
 
-    private String name;
-
-    @NotNull
-    @Column(unique = true)
-    private String categoryId;
+    @JsonIgnore
+    @ManyToOne
+    private Order order;
 
     @ManyToOne
-    private Category parentCategory;
+    private Product product;
 
-    @NotNull
-    private Integer level;
+    private String size;
 
+    private int quantity;
+
+    private Integer mrpPrice;
+
+    private Integer sellingPrice;
+
+    private Long userId;
 
 }
