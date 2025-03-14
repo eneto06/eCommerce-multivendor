@@ -28,4 +28,6 @@ public class Deal {
     @OneToOne
     private HomeCategory category;
 
+    
+
 }
